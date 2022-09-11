@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { View, StyleSheet, Text } from "react-native"
+import { View, StyleSheet, Text, Button } from "react-native"
 
 
 export default function App() {
@@ -13,12 +13,29 @@ export default function App() {
         name: 'Jorg',
         baseEnthusiasmLevel: 0
     }
-
+    
     const [enthusiasmLevel, setEnthusiasmLevel] = useState(0)
+
+    const onIncrement = () => {
+        setEnthusiasmLevel(enthusiasmLevel + 1)
+        console.log(enthusiasmLevel)
+    }
+    
+    const onDecrement = () => {
+        if (enthusiasmLevel > 0) {
+            setEnthusiasmLevel( enthusiasmLevel - 1)
+            console.log(enthusiasmLevel)
+        } else {
+            setEnthusiasmLevel(0)
+            console.log(enthusiasmLevel)
+        } 
+    }
 
     return(
         <View style={styles.container}>
-           <Text style={styles.text}>{user.name}</Text> 
+            <Text style={styles.text}>{user.name}</Text>
+            <Button title='UP' onPress={onIncrement}/>
+            <Button title='DOWN' onPress={onDecrement}/>
         </View>
     )
 }
@@ -33,5 +50,9 @@ const styles = StyleSheet.create({
 
     text:{
         color: '#fff'
+    }, 
+
+    button:{
+        padding: 10
     }
 })
