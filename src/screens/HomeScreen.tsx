@@ -31,9 +31,17 @@ export default function App() {
         } 
     }
 
+    const getExclamationMarks = (numChars: number) => {
+        if (numChars > 0) {
+            return Array(numChars + 1).join('!')
+        } else {
+            return ''
+        }
+    }
+
     return(
         <View style={styles.container}>
-            <Text style={styles.text}>{user.name}</Text>
+            <Text style={styles.text}>{user.name}{getExclamationMarks(enthusiasmLevel)}</Text>
             <Button title='UP' onPress={onIncrement}/>
             <Button title='DOWN' onPress={onDecrement}/>
         </View>
@@ -49,10 +57,7 @@ const styles = StyleSheet.create({
     },
 
     text:{
-        color: '#fff'
-    }, 
-
-    button:{
-        padding: 10
-    }
+        color: '#fff',
+        fontSize: 20
+    },
 })
